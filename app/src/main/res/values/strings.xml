@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ClassNotify</string>
+    <string name="default_notificacion_channel_id">translatable="false">fcm_default_channel</string>
 </resources>

@@ -1,54 +1,49 @@
 package com.example.classnotify.navigation
 
-import androidx.compose.runtime.Composable
+import AgregarMateriaView
+import androidx.compose.runtime.*
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.classnotify.models.Materia
+import com.example.classnotify.view.EditarMateriaView
 import com.example.classnotify.view.InicioView
+import com.example.classnotify.view.PublicarAnuncioView
+import com.example.classnotify.viewModels.AnuncioViewModel
 import com.example.classnotify.viewModels.MateriaViewModel
+import kotlinx.coroutines.launch
+import com.example.classnotify.view.VerAnunciosView
 
 @Composable
-
 fun NavManager(
-    viewModel: MateriaViewModel
+    navController: NavHostController,
+    materiaViewModel: MateriaViewModel,
+    anuncioViewModel: AnuncioViewModel
 ) {
-    val navController = rememberNavController()
+    var materia by remember { mutableStateOf<Materia?>(null) }
+    val coroutineScope = rememberCoroutineScope()
 
-    NavHost(
-        navController = navController,
-        startDestination = "inicio"
-    ) {
+    NavHost(navController = navController, startDestination = "inicio") {
         composable("inicio") {
-            InicioView(navController, viewModel)
+            InicioView(navController, materiaViewModel, anuncioViewModel)
         }
-        composable("registrar") {
-            AgregarMateriaView(navController, viewModel)
+        composable("agregarMateria") {
+            AgregarMateriaView(navController, materiaViewModel)
         }
-        composable("editar/{idMateria}/{nombre}/{profesor}/{descripcion}/{horario}/{aula}/{adjunto}",
-            arguments = listOf(
-                navArgument("idMateria") { type = NavType.StringType },
-                navArgument("nombre") { type = NavType.StringType },
-                navArgument("profesor") { type = NavType.StringType },
-                navArgument("descripcion") { type = NavType.StringType },
-                navArgument("horario") { type = NavType.StringType },
-                navArgument("aula") { type = NavType.StringType },
-                navArgument("adjunto") { type = NavType.StringArrayType }
-            )){ EditarMateriaView(
-                navController,
-                viewModel,
-                it.arguments?.getString("idMateria")!!,
-                it.arguments?.getString("nombre")!!,
-                it.arguments?.getString("profesor")!!,
-                it.arguments?.getString("descripcion")!!,
-                it.arguments?.getString("horario")!!,
-                it.arguments?.getString("aula")!!,
-                it.arguments?.getByteArray("adjunto")!!,
-
+        composable("editarMateria/{idMateria}") { backStackEntry ->
+            val idMateria = backStackEntry.arguments?.getString("idMateria")?.toLongOrNull()
+                ?: throw IllegalArgumentException("Invalid ID")
+            EditarMateriaView(
+                navController = navController,
+                viewModel = materiaViewModel,
+                idMateria = idMateria
             )
-
         }
-
+        composable("publicarAnuncio") {
+            PublicarAnuncioView(navController, anuncioViewModel)
+        }
+        composable("verAnuncios") { VerAnunciosView(navController, anuncioViewModel) }
     }
-    }
+}

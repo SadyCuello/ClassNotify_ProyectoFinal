@@ -5,9 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "materia")
-class Materia (
-  @PrimaryKey(autoGenerate = false)
-    val idMateria: String,
+data class Materia (
+  @PrimaryKey(autoGenerate = true) val idMateria: Long? = null,
     @ColumnInfo("Nombre")
     val nombre: String,
      @ColumnInfo("Profesor")
@@ -19,5 +18,5 @@ class Materia (
   @ColumnInfo("Aula")
   val aula: String,
   @ColumnInfo("Adjunto")
-  val adjunto: ByteArray
+  val adjunto: String? = null
 )
