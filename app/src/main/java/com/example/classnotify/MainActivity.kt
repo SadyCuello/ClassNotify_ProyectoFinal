@@ -14,16 +14,12 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
 import androidx.room.Room
 import com.example.classnotify.navigation.NavManager
-import com.example.classnotify.room.AnuncioDataBase
-import com.example.classnotify.room.ClassDataBase
-import com.example.classnotify.viewModels.AnuncioViewModel
-import com.example.classnotify.viewModels.MateriaViewModel
+import com.example.classnotify.datas.local.AnuncioDataBase
+import com.example.classnotify.datas.local.ClassDataBase
+import com.example.classnotify.domain.viewModels.AnuncioViewModel
+import com.example.classnotify.domain.viewModels.MateriaViewModel
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.compose.viewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
 
@@ -37,6 +33,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestStoragePermissions()
+        FirebaseApp.initializeApp(this)
 
         val classDataBase = Room.databaseBuilder(
             applicationContext,
@@ -59,7 +56,6 @@ class MainActivity : ComponentActivity() {
         materiaViewModel = MateriaViewModel(materiaDao)
 
         setContent {
-
             Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background

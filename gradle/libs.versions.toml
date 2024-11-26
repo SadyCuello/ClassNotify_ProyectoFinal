@@ -3,6 +3,7 @@ androidPdfViewerVersion = "2.8.2"
 composeBom = "2024.06.00"
 activityComposeVersion = "1.7.0"
 firebaseAnalyticsVersion = "22.0.2"
+firebaseBom = "32.1.1"
 firebaseBomVersion = "33.1.2"
 firebaseMessagingKtxVersion = "24.0.0"
 koinAndroidVersion = "3.2.0"
@@ -21,6 +22,10 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 screenshotTestGradlePluginVersion = "0.0.1-alpha03"
+googleServicesVersion = "4.4.2"
+googleGmsGoogleServicesVersion = "4.4.2"
+firebaseFirestoreVersion = "25.1.1"
+runtimeLivedataVersion = "1.7.5"
 
 [libraries]
 
@@ -43,7 +48,10 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalyticsVersion" }
+firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
+firebase-bom-v3211 = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx" }
 firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx", version.ref = "firebaseMessagingKtxVersion" }
 junit = { module = "junit:junit", version.ref = "junit" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
@@ -53,4 +61,9 @@ koin-android = { module = "org.koin:koin-android", version.ref = "koinAndroidVer
 koin-androidx-compose = { module = "org.koin:koin-androidx-compose", version.ref = "koinAndroidxComposeVersion" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinStdlibVersion" }
 screenshot-test-gradle-plugin = { group = "com.android.compose.screenshot", name = "screenshot-test-gradle-plugin", version.ref = "screenshotTestGradlePluginVersion" }
+google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServicesVersion" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestoreVersion" }
+runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedataVersion" }
+[plugins]
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServicesVersion" }
 

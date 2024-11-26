@@ -3,18 +3,15 @@ package com.example.classnotify.navigation
 import AgregarMateriaView
 import androidx.compose.runtime.*
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.example.classnotify.models.Materia
-import com.example.classnotify.view.EditarMateriaView
-import com.example.classnotify.view.InicioView
-import com.example.classnotify.view.PublicarAnuncioView
-import com.example.classnotify.viewModels.AnuncioViewModel
-import com.example.classnotify.viewModels.MateriaViewModel
-import kotlinx.coroutines.launch
-import com.example.classnotify.view.VerAnunciosView
+import com.example.classnotify.domain.models.Materia
+import com.example.classnotify.ui_presentation.ui.view.EditarMateriaView
+import com.example.classnotify.ui_presentation.ui.view.InicioView
+import com.example.classnotify.ui_presentation.ui.view.PublicarAnuncioView
+import com.example.classnotify.domain.viewModels.AnuncioViewModel
+import com.example.classnotify.domain.viewModels.MateriaViewModel
+import com.example.classnotify.ui_presentation.ui.view.VerAnunciosView
 
 @Composable
 fun NavManager(
